@@ -1,2 +1,2 @@
 # AOP-prueba
-Prueba de ASpect Oriented Programming (AOP) con Spring MVC y AspectJ Weaver.
+Prueba de Aspect Oriented Programming (AOP) con Spring MVC y AspectJ Weaver.
