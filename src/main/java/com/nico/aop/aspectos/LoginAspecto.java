@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginAspecto {
 
-	@Before("execution(public void insertaCliente())")
+	@Before("execution(public * insertaCliente*())")
 	public void antesInsertarCliente() {
 		System.out.println("El usuario está logeado");
 		System.out.println("El perfil para insertar clientes es correcto");
