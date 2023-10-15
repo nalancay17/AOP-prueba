@@ -1,10 +1,15 @@
 package com.nico.aop.aspectos;
 
+import java.util.List;
+
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
+import com.nico.aop.Cliente;
 
 @Aspect
 @Component
@@ -21,6 +26,9 @@ public class LoginAspecto {
 
 	@Pointcut("todosGetters() || todosSetters()")
 	private void todosGettersOSetters() {}
+
+	@Pointcut("execution(public * encuentraClientes())")
+	private void prefEncuentraClientes() {}
 
 	@Before("prefInsercionClienteSinArgs()")
 	public void antesInsertarCliente() {
@@ -46,6 +54,14 @@ public class LoginAspecto {
 	@After("todosGettersOSetters()")
 	public void despuesGetterOSetter() {
 		System.out.println("Getter ó setter ejecutado");
+	}
+
+	@AfterReturning(pointcut = "prefEncuentraClientes()", returning = "clientes")
+	public void despuesDeRetornarClientes(List<Cliente> clientes) {
+		clientes.forEach(c -> {
+			if (c.getTipo().equals("VIP"))
+				System.out.println("Existen clientes VIP en el listado");
+		});
 	}
 
 }

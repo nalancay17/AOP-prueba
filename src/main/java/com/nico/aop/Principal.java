@@ -14,16 +14,18 @@ public class Principal {
 		ClienteVipDAO clienteVipDao = contexto.getBean("clienteVipDAO", ClienteVipDAO.class);
 		Cliente cliente = contexto.getBean("cliente", Cliente.class);
 		
-		clienteDao.insertaCliente();
-		System.out.println();
-		clienteVipDao.insertaClienteVIP();
+//		clienteDao.insertaCliente();
+//		System.out.println();
+//		clienteVipDao.insertaClienteVIP();
+//
+//		System.out.println();
+//		clienteVipDao.actualizaClienteVIP(cliente);
+//
+//		System.out.println();
+//		cliente.setNombre("Carlos");
+//		cliente.getNombre();
 
-		System.out.println();
-		clienteVipDao.actualizaClienteVIP(cliente);
-
-		System.out.println();
-		cliente.setNombre("Carlos");
-		cliente.getNombre();
+		clienteDao.encuentraClientes();
 
 		contexto.close();
 	}
