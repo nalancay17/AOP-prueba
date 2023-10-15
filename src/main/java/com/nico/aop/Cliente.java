@@ -1,5 +1,8 @@
 package com.nico.aop;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Cliente {
 
 	private String nombre;

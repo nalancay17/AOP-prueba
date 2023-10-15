@@ -13,6 +13,15 @@ public class LoginAspecto {
 	@Pointcut("execution(public * insertaCliente*())")
 	private void prefInsercionClienteSinArgs() {}
 
+	@Pointcut("execution(public * com.nico.aop.*.get*())")
+	private void todosGetters() {}
+
+	@Pointcut("execution(public void com.nico.aop.*.set*(..))")
+	private void todosSetters() {}
+
+	@Pointcut("todosGetters() || todosSetters()")
+	private void todosGettersOSetters() {}
+
 	@Before("prefInsercionClienteSinArgs()")
 	public void antesInsertarCliente() {
 		System.out.println("El usuario está logeado");
@@ -32,6 +41,11 @@ public class LoginAspecto {
 	@Before("prefInsercionClienteSinArgs()")
 	public void verificarRequisitosTabla() {
 		System.out.println("Se puede insertar el cliente en la tabla");
+	}
+
+	@After("todosGettersOSetters()")
+	public void despuesGetterOSetter() {
+		System.out.println("Getter ó setter ejecutado");
 	}
 
 }
