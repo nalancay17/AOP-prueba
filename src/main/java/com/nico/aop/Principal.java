@@ -12,11 +12,14 @@ public class Principal {
 
 		ClienteDAO clienteDao = contexto.getBean("clienteDAO", ClienteDAO.class);
 		ClienteVipDAO clienteVipDao = contexto.getBean("clienteVipDAO", ClienteVipDAO.class);
+		
 		clienteDao.insertaCliente();
+		System.out.println();
+		clienteVipDao.insertaClienteVIP();
 
 		System.out.println();
+		clienteVipDao.actualizaClienteVIP(new Cliente());
 
-		clienteVipDao.insertaClienteVIP();
 		contexto.close();
 	}
 }
