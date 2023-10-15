@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -29,6 +30,9 @@ public class LoginAspecto {
 
 	@Pointcut("execution(public * encuentraClientes())")
 	private void prefEncuentraClientes() {}
+
+	@Pointcut("execution(public void com.nico.aop.dao.ClienteDAO.eliminarCliente())")
+	private void eliminarCliente() {}
 
 	@Before("prefInsercionClienteSinArgs()")
 	public void antesInsertarCliente() {
@@ -62,6 +66,12 @@ public class LoginAspecto {
 			if (c.getTipo().equals("VIP"))
 				System.out.println("Existen clientes VIP en el listado");
 		});
+	}
+
+	@AfterThrowing(pointcut = "eliminarCliente()", throwing = "excepcion")
+	public void despuesExcepcionEliminarCliente(Throwable excepcion) {
+		System.out.println("Logs guardados para seguimiento del error");
+		System.out.println("Se ha enviado un mail con los logs al equipo de desarrollo");
 	}
 
 }

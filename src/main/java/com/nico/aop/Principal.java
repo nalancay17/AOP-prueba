@@ -26,7 +26,16 @@ public class Principal {
 //		cliente.getNombre();
 
 		clienteDao.encuentraClientes();
+		System.out.println();
 
+		// ARROJA EXCEPCION PARA VER EL USO DE AFTER THROWING EN SU ADVICE
+		try {
+			clienteDao.eliminarCliente();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Advice de tipo AfterThrowing ejecutado");
 		contexto.close();
 	}
 }

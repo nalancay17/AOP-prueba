@@ -25,4 +25,8 @@ public class ClienteDAO {
 		return clientes;
 	}
 
+	public void eliminarCliente() throws Exception {
+		throw new RuntimeException("No se puede eliminar el cliente");
+	}
+
 }
