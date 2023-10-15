@@ -36,6 +36,11 @@ public class Principal {
 		}
 
 		System.out.println("Advice de tipo AfterThrowing ejecutado");
+
+		// USO ADVICE TIPO AROUND
+		System.out.println();
+		clienteDao.contarClientes();
+		
 		contexto.close();
 	}
 }

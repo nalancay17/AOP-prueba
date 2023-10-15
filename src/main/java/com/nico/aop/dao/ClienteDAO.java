@@ -29,4 +29,8 @@ public class ClienteDAO {
 		throw new RuntimeException("No se puede eliminar el cliente");
 	}
 
+	public void contarClientes() {
+		System.out.println("Cantidad de clientes: 4");
+	}
+
 }

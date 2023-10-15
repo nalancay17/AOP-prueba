@@ -2,9 +2,11 @@ package com.nico.aop.aspectos;
 
 import java.util.List;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -33,6 +35,9 @@ public class LoginAspecto {
 
 	@Pointcut("execution(public void com.nico.aop.dao.ClienteDAO.eliminarCliente())")
 	private void eliminarCliente() {}
+
+	@Pointcut("execution(public void com.nico.aop.dao.ClienteDAO.contarClientes())")
+	private void cuentaCantidadClientes() {}
 
 	@Before("prefInsercionClienteSinArgs()")
 	public void antesInsertarCliente() {
@@ -72,6 +77,13 @@ public class LoginAspecto {
 	public void despuesExcepcionEliminarCliente(Throwable excepcion) {
 		System.out.println("Logs guardados para seguimiento del error");
 		System.out.println("Se ha enviado un mail con los logs al equipo de desarrollo");
+	}
+
+	@Around("cuentaCantidadClientes()")
+	public void antesYDespuesCuentaCliente(ProceedingJoinPoint jp) throws Throwable {
+		System.out.println("Antes de la cuenta de clientes");
+		jp.proceed();
+		System.out.println("Después de la cuenta de clientes");
 	}
 
 }
